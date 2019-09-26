@@ -1,24 +1,39 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getPokemonDetail } from '../../actions/pokemonAction';
+import {
+	getPokemonDetail,
+	getPokemonSpecies
+} from '../../actions/pokemonAction';
 import Spinner from '../layout/Spinner';
+import TypeBadges from './PokemonDetail/TypeBadges';
+import StatsTable from './PokemonDetail/StatsTable';
+
 class PokemonDetail extends Component {
 	static propTypes = {
 		pokemons: PropTypes.object.isRequired,
-		getPokemonDetail: PropTypes.func.isRequired
+		getPokemonDetail: PropTypes.func.isRequired,
+		getPokemonSpecies: PropTypes.func.isRequired
 	};
 	componentDidMount() {
 		this.props.getPokemonDetail(this.props.match.params.id);
+		this.props.getPokemonSpecies(this.props.match.params.id);
 	}
 	render() {
-		const { loading, current_pokemon } = this.props.pokemons;
-		if (current_pokemon === null || loading) {
+		const {
+			loading,
+			current_pokemon,
+			current_pokemon_species
+		} = this.props.pokemons;
+		if (
+			current_pokemon === null ||
+			current_pokemon_species === null ||
+			loading
+		) {
 			return <Spinner />;
 		}
 		const { id, name, types, stats } = current_pokemon;
-		// const typeBadges =
-
+		const { flavor_text_entries } = current_pokemon_species;
 		return (
 			<Fragment>
 				<div className='card align-items-center'>
@@ -28,52 +43,14 @@ class PokemonDetail extends Component {
 						className='card-img-top pokeimg'
 					/>
 					<div className='card-body'>
-						<h1 className='card-title'>{name}</h1>
-						{types.map(type => {
-							return (
-								<span
-									className={`badge type-${type.type.name} white`}
-								>
-									{type.type.name}
-								</span>
-							);
-						})}
-
-						<table className='table table-borderless'>
-							<tbody>
-								{stats.map(stat => {
-									return (
-										<tr>
-											<th>
-												<span className='progress-label'>
-													{' '}
-													{stat.stat.name}
-												</span>
-											</th>
-											<td>
-												<div
-													className='progress'
-													style={{ width: '100px' }}
-												>
-													<div
-														className={`progress-bar progress-bar-striped stat-${stat.stat.name} `}
-														role='progressbar'
-														style={{
-															width: `${stat.base_stat}%`
-														}}
-														aria-valuenow={
-															stat.base_stat
-														}
-														aria-valuemin='0'
-														aria-valuemax='100'
-													></div>
-												</div>
-											</td>
-										</tr>
-									);
-								})}
-							</tbody>
-						</table>
+						<h1 className='card-title mx-auto'>{name}</h1>
+						<p className='card-text'>
+							{flavor_text_entries[1].language.name === 'en'
+								? flavor_text_entries[1].flavor_text
+								: flavor_text_entries[2].flavor_text}
+						</p>
+						<TypeBadges types={types} />
+						<StatsTable stats={stats} />
 					</div>
 				</div>
 			</Fragment>
@@ -86,5 +63,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
 	mapStateToProps,
-	{ getPokemonDetail }
+	{ getPokemonDetail, getPokemonSpecies }
 )(PokemonDetail);
