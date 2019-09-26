@@ -1,3 +1,5 @@
 export const GET_ALL_POKEMONS = 'GET_ALL_POKEMONS';
+export const GET_POKEMON_DETAIL = 'GET_POKEMON_DETAIL';
+
 export const SET_LOADING = 'SET_LOADING';
 export const POKEMON_ERROR = 'POKEMON_ERROR';
