@@ -1,0 +1,81 @@
+.pokeimg {
+	width: 96px;
+	height: 96px;
+}
+
+.type-normal {
+	background-color: grey;
+}
+.type-poison {
+	background-color: darkmagenta;
+}
+.type-ground {
+	background-color: brown;
+}
+.type-rock {
+	background-color: burlywood;
+}
+.type-bug {
+	background-color: greenyellow;
+}
+.type-ghost {
+	background-color: blueviolet;
+}
+.type-steel {
+	background-color: silver;
+}
+.type-dragon {
+	background-color: midnightblue;
+}
+.type-dark {
+	background-color: darkslategrey;
+}
+.type-flying {
+	background-color: lightseagreen;
+}
+.type-fire {
+	background-color: orangered;
+}
+.type-psychic {
+	background-color: palevioletred;
+}
+.type-ice {
+	background-color: lightblue;
+}
+.type-none {
+	background-color: black;
+}
+.type-fighting {
+	background-color: red;
+}
+.type-water {
+	background-color: darkblue;
+}
+.type-grass {
+	background-color: green;
+}
+.type-electric {
+	background-color: yellow;
+}
+.type-fairy {
+	background-color: pink;
+}
+
+.stat-speed {
+	background-color: orchid;
+}
+.stat-hp {
+	background-color: orangered;
+}
+.stat-attack {
+	background-color: teal;
+}
+.stat-special-attack {
+	background-color: goldenrod;
+}
+.stat-special-defense {
+	background-color: blue;
+}
+.stat-defense {
+	background-color: green;
+}

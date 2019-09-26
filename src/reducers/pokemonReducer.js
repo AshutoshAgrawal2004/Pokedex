@@ -18,7 +18,8 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				pokemons: action.payload,
-				loading: false
+				loading: false,
+				current: null
 			};
 		case GET_POKEMON_DETAIL:
 			return {
