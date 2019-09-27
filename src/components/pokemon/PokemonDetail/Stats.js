@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-const StatsTable = ({ stats }) => {
+import { toTitleCase } from '../../HelpFuncs';
+const Stats = ({ stats }) => {
 	return (
 		<div className='card '>
 			<h5 className='card-title mx-auto'>Stats</h5>
@@ -13,7 +13,7 @@ const StatsTable = ({ stats }) => {
 								<th>
 									<span className='progress-label'>
 										{' '}
-										{stat.stat.name}
+										{toTitleCase(stat.stat.name)}
 									</span>
 								</th>
 								<td style={{ width: '60%' }}>
@@ -41,8 +41,8 @@ const StatsTable = ({ stats }) => {
 	);
 };
 
-StatsTable.propTypes = {
+Stats.propTypes = {
 	stats: PropTypes.array.isRequired
 };
 
-export default StatsTable;
+export default Stats;

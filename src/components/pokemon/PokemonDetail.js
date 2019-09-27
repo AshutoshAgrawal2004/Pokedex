@@ -6,9 +6,12 @@ import {
 	getPokemonSpecies
 } from '../../actions/pokemonAction';
 import Spinner from '../layout/Spinner';
-import TypeBadges from './PokemonDetail/TypeBadges';
-import StatsTable from './PokemonDetail/StatsTable';
+import Types from './PokemonDetail/Types';
+import Stats from './PokemonDetail/Stats';
+import Abilities from './PokemonDetail/Abilities';
+import Bio from './PokemonDetail/Bio';
 
+import { toTitleCase } from '../HelpFuncs';
 class PokemonDetail extends Component {
 	static propTypes = {
 		pokemons: PropTypes.object.isRequired,
@@ -32,7 +35,15 @@ class PokemonDetail extends Component {
 		) {
 			return <Spinner />;
 		}
-		const { id, name, types, stats, height, weight } = current_pokemon;
+		const {
+			id,
+			name,
+			types,
+			stats,
+			height,
+			weight,
+			abilities
+		} = current_pokemon;
 		const {
 			flavor_text_entries,
 			capture_rate,
@@ -48,14 +59,18 @@ class PokemonDetail extends Component {
 						className='card-img-top pokeimg'
 					/>
 					<div className='card-body'>
-						<h1 className='card-title mx-auto'>{name}</h1>
+						<h1 className='card-title mx-auto'>
+							{toTitleCase(name)}
+						</h1>
 						<p className='card-text'>
 							{flavor_text_entries[1].language.name === 'en'
 								? flavor_text_entries[1].flavor_text
 								: flavor_text_entries[2].flavor_text}
 						</p>
-						<TypeBadges types={types} bio={bio} />
-						<StatsTable stats={stats} />
+						<Abilities abilities={abilities} />
+						<Types types={types} />
+						<Stats stats={stats} />
+						<Bio bio={bio} />
 					</div>
 				</div>
 			</Fragment>

@@ -30,7 +30,7 @@ const SearchPokemons = ({ filterPokemons, clearFilter, filtered_pokemons }) => {
 	);
 };
 SearchPokemons.propTypes = {
-	filtered_pokemons: PropTypes.array.isRequired,
+	filtered_pokemons: PropTypes.array,
 	filterPokemons: PropTypes.func.isRequired,
 	clearFilter: PropTypes.func.isRequired
 };
