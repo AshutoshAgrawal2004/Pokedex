@@ -4,20 +4,28 @@ import { connect } from 'react-redux';
 import { getPokemons } from '../../actions/pokemonAction';
 import Spinner from '../layout/Spinner';
 import PokemonItem from './PokemonItem';
-const Pokemon = ({ getPokemons, pokemons: { loading, pokemons } }) => {
+const Pokemon = ({
+	getPokemons,
+	pokemons: { loading, pokemons, filtered_pokemons }
+}) => {
 	useEffect(() => {
 		getPokemons();
 		console.log(pokemons);
 	}, []);
 
-	if (pokemons !== null && pokemons.length !== 0) {
+	if (filtered_pokemons !== null) {
+		return (
+			<div className='card-group d-flex'>
+				{filtered_pokemons.map(pokemon => (
+					<PokemonItem pokemon={pokemon} />
+				))}
+			</div>
+		);
+	} else if (pokemons !== null && pokemons.length !== 0) {
 		return (
 			<div className='card-group d-flex'>
 				{pokemons.results.map(pokemon => (
-					<PokemonItem
-						key={pokemon.url.substring(34, pokemon.url.length - 1)}
-						pokemon={pokemon}
-					/>
+					<PokemonItem pokemon={pokemon} />
 				))}
 			</div>
 		);

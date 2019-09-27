@@ -4,11 +4,14 @@ import {
 	GET_POKEMON_SPECIES,
 	POKEMON_ERROR,
 	SET_LOADING,
-	CLEAR_CURRENT
+	CLEAR_CURRENT,
+	FILTER_POKEMONS,
+	CLEAR_FILTER
 } from '../actions/types';
 
 const initialState = {
 	pokemons: null,
+	filtered_pokemons: null,
 	current_pokemon: null,
 	current_pokemon_species: null,
 	loading: false,
@@ -52,6 +55,19 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				error: action.payload
+			};
+		case FILTER_POKEMONS:
+			return {
+				...state,
+				filtered_pokemons: state.pokemons.results.filter(pokemon => {
+					const regex = new RegExp(`${action.payload}`, 'gi');
+					return pokemon.name.match(regex);
+				})
+			};
+		case CLEAR_FILTER:
+			return {
+				...state,
+				filtered_pokemons: null
 			};
 		default:
 			return state;

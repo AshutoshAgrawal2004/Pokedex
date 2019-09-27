@@ -32,8 +32,13 @@ class PokemonDetail extends Component {
 		) {
 			return <Spinner />;
 		}
-		const { id, name, types, stats } = current_pokemon;
-		const { flavor_text_entries } = current_pokemon_species;
+		const { id, name, types, stats, height, weight } = current_pokemon;
+		const {
+			flavor_text_entries,
+			capture_rate,
+			gender_rate
+		} = current_pokemon_species;
+		const bio = { height, weight, capture_rate, gender_rate };
 		return (
 			<Fragment>
 				<div className='card align-items-center'>
@@ -49,7 +54,7 @@ class PokemonDetail extends Component {
 								? flavor_text_entries[1].flavor_text
 								: flavor_text_entries[2].flavor_text}
 						</p>
-						<TypeBadges types={types} />
+						<TypeBadges types={types} bio={bio} />
 						<StatsTable stats={stats} />
 					</div>
 				</div>

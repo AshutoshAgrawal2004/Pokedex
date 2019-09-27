@@ -16,11 +16,8 @@ const StatsTable = ({ stats }) => {
 										{stat.stat.name}
 									</span>
 								</th>
-								<td>
-									<div
-										className='progress'
-										style={{ width: '100px' }}
-									>
+								<td style={{ width: '60%' }}>
+									<div className='progress'>
 										<div
 											className={`progress-bar progress-bar-animated progress-bar-striped stat-${stat.stat.name} `}
 											role='progressbar'

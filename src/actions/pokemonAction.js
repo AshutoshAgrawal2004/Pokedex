@@ -4,7 +4,9 @@ import {
 	SET_LOADING,
 	POKEMON_ERROR,
 	GET_POKEMON_SPECIES,
-	CLEAR_CURRENT
+	CLEAR_CURRENT,
+	FILTER_POKEMONS,
+	CLEAR_FILTER
 } from './types';
 import axios from 'axios';
 export const getPokemons = () => async dispatch => {
@@ -75,5 +77,17 @@ export const clearCurrent = () => dispatch => {
 	console.log('cleaning current pokemon');
 	dispatch({
 		type: CLEAR_CURRENT
+	});
+};
+export const filterPokemons = text => dispatch => {
+	dispatch({
+		type: FILTER_POKEMONS,
+		payload: text
+	});
+};
+
+export const clearFilter = () => dispatch => {
+	dispatch({
+		type: CLEAR_FILTER
 	});
 };
