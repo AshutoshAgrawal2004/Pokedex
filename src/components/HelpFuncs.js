@@ -4,4 +4,14 @@ export const toTitleCase = str => {
 		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 	});
 };
-export const parseId = url => url.substring(34, url.length - 1);
+export const parseId = url => {
+	const myregexp = /\/(\d+)\//;
+	// var my_other_regexp = /\/(\d+)(?:\/|$)/;
+	var match = myregexp.exec(url);
+	if (match != null) {
+		let result = match[1];
+		return result;
+	} else {
+		let result = '';
+	}
+};

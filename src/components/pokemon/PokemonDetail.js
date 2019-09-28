@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import uuid from 'uuid';
 import {
 	getPokemonDetail,
-	getPokemonSpecies
+	getPokemonSpecies,
+	clearCurrent
 } from '../../actions/pokemonAction';
 import Spinner from '../layout/Spinner';
 import Types from './PokemonDetail/Types';
@@ -13,8 +14,8 @@ import Abilities from './PokemonDetail/Abilities';
 import Bio from './PokemonDetail/Bio';
 import Moves from './PokemonDetail/Moves';
 import Varieties from './PokemonDetail/Varieties';
+import EvolutionChain from './PokemonDetail/EvolutionChain';
 
-import { toTitleCase } from '../HelpFuncs';
 class PokemonDetail extends Component {
 	static propTypes = {
 		pokemons: PropTypes.object.isRequired,
@@ -22,6 +23,7 @@ class PokemonDetail extends Component {
 		getPokemonSpecies: PropTypes.func.isRequired
 	};
 	componentDidMount() {
+		this.props.clearCurrent();
 		this.props.getPokemonDetail(this.props.match.params.id);
 		this.props.getPokemonSpecies(this.props.match.params.id);
 	}
@@ -52,7 +54,8 @@ class PokemonDetail extends Component {
 			flavor_text_entries,
 			capture_rate,
 			gender_rate,
-			varieties
+			varieties,
+			evolution_chain
 		} = current_pokemon_species;
 		const bio = { height, weight, capture_rate, gender_rate };
 		return (
@@ -78,6 +81,8 @@ class PokemonDetail extends Component {
 								? flavor_text_entries[1].flavor_text
 								: flavor_text_entries[2].flavor_text}
 						</p>
+						<h5 className='text-center'>Evolution</h5>
+						<EvolutionChain evolutionURL={evolution_chain.url} />
 						<Abilities key={uuid.v4()} abilities={abilities} />
 						<Bio key={uuid.v4()} bio={bio} />
 						<Types key={uuid.v4()} types={types} />
@@ -95,5 +100,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
 	mapStateToProps,
-	{ getPokemonDetail, getPokemonSpecies }
+	{ getPokemonDetail, getPokemonSpecies, clearCurrent }
 )(PokemonDetail);

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'uuid';
 import { parseId } from '../../HelpFuncs';
 
 const Varieties = ({ varieties }) => {
@@ -10,7 +9,10 @@ const Varieties = ({ varieties }) => {
 			{varieties.map(variety => {
 				const pokid = parseId(variety.pokemon.url);
 				return (
-					<div className='card m-auto flex-fill align-items-center'>
+					<div
+						key={pokid}
+						className='card m-auto flex-fill align-items-center'
+					>
 						<img
 							src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokid}.png`}
 							onError={e => {
