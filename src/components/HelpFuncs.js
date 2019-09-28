@@ -4,3 +4,4 @@ export const toTitleCase = str => {
 		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 	});
 };
+export const parseId = url => url.substring(34, url.length - 1);

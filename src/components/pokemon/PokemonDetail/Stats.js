@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { toTitleCase } from '../../HelpFuncs';
+import uuid from 'uuid';
+
 const Stats = ({ stats }) => {
 	return (
-		<div className='card '>
+		<div className='card p-3 '>
 			<h5 className='card-title mx-auto'>Stats</h5>
 			<table className='table table-borderless'>
 				<tbody>
 					{stats.map(stat => {
 						return (
-							<tr>
+							<tr key={uuid.v4()}>
 								<th>
-									<span className='progress-label'>
+									<span className='progress-label text-capitalize'>
 										{' '}
-										{toTitleCase(stat.stat.name)}
+										{stat.stat.name}
 									</span>
 								</th>
 								<td style={{ width: '60%' }}>

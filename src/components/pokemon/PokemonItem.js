@@ -1,16 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { parseId } from '../HelpFuncs';
 const PokemonItem = ({ pokemon }) => {
-	const id = pokemon.url.substring(34, pokemon.url.length - 1);
 	return (
-		<div className='card m4 flex-fill m-auto ' style={cardStyle}>
+		<div
+			className='card m-auto flex-fill align-items-center'
+			style={cardStyle}
+		>
 			<img
-				src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+				src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseId(
+					pokemon.url
+				)}.png`}
 				className='card-img-top pokeimg'
 				alt={pokemon.name}
 			/>
-			<Link to={`/pokemon/${id}`} className='card-title'>
+			<Link
+				to={`/pokemon/${parseId(pokemon.url)}`}
+				className='card-title h4 text-capitalize'
+			>
 				{pokemon.name}
 			</Link>
 		</div>
@@ -21,6 +29,8 @@ const cardStyle = {
 	width: '160px',
 	height: '160px'
 };
-PokemonItem.propTypes = {};
+PokemonItem.propTypes = {
+	pokemon: PropTypes.object.isRequired
+};
 
 export default PokemonItem;

@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { toTitleCase } from '../../HelpFuncs';
+import uuid from 'uuid';
+
 const Abilities = ({ abilities }) => {
 	return (
-		<div className='card'>
+		<div className='card p-3'>
 			<h5 className='card-title mx-auto'>Abilities</h5>
-			<div className='container d-flex align-items-center'>
+			<div className='container d-flex align-items-center text-capitalize'>
 				{abilities.map(ability => {
 					return (
-						<span className='btn btn btn-primary mx-auto'>
-							{toTitleCase(ability.ability.name)}
+						<span
+							key={uuid.v4()}
+							className='btn btn btn-primary mx-auto'
+						>
+							{ability.ability.name}
 						</span>
 					);
 				})}
@@ -19,7 +23,7 @@ const Abilities = ({ abilities }) => {
 };
 
 Abilities.propTypes = {
-	abilities: PropTypes.object.isRequired
+	abilities: PropTypes.array.isRequired
 };
 
 export default Abilities;

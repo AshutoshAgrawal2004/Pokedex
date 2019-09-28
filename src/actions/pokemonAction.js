@@ -17,7 +17,6 @@ export const getPokemons = () => async dispatch => {
 			'https://pokeapi.co/api/v2/pokemon?limit=151'
 		);
 		const data = await res.data;
-		console.log(data);
 		dispatch({
 			type: GET_ALL_POKEMONS,
 			payload: data
@@ -36,7 +35,6 @@ export const getPokemonDetail = id => async dispatch => {
 		const res = await axios.get(`
 			https://pokeapi.co/api/v2/pokemon/${id}`);
 		const data = await res.data;
-		console.log(data);
 		dispatch({
 			type: GET_POKEMON_DETAIL,
 			payload: data
@@ -55,7 +53,6 @@ export const getPokemonSpecies = id => async dispatch => {
 		const res = await axios.get(`
 			https://pokeapi.co/api/v2/pokemon-species/${id}`);
 		const data = await res.data;
-		console.log(data);
 		dispatch({
 			type: GET_POKEMON_SPECIES,
 			payload: data
