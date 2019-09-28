@@ -17,7 +17,7 @@ const PokemonItem = ({ pokemon }) => {
 			/>
 			<Link
 				to={`/pokemon/${parseId(pokemon.url)}`}
-				className='card-title h4 text-capitalize'
+				className='card-title h4 text-warning text-capitalize'
 			>
 				{pokemon.name}
 			</Link>

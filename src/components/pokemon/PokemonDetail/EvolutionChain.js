@@ -7,7 +7,6 @@ import { parseId } from '../../HelpFuncs';
 import uuid from 'uuid';
 const EvolutionChain = ({ evolutionURL }) => {
 	const [evolutionChain, setevolutionChain] = useState(null);
-	const [child, setChild] = useState({});
 	const getEvolutionChain = async evolutionURL => {
 		const res = await axios.get(evolutionURL);
 		const data = await res.data;

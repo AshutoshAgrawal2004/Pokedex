@@ -7,6 +7,7 @@ import {
 	getPokemonSpecies,
 	clearCurrent
 } from '../../actions/pokemonAction';
+import { parseId } from '../HelpFuncs';
 import Spinner from '../layout/Spinner';
 import Types from './PokemonDetail/Types';
 import Stats from './PokemonDetail/Stats';
@@ -26,6 +27,12 @@ class PokemonDetail extends Component {
 		this.props.clearCurrent();
 		this.props.getPokemonDetail(this.props.match.params.id);
 		this.props.getPokemonSpecies(this.props.match.params.id);
+		// if (this.props.pokemons.current_pokemon !== null) {
+		// 	console.log('getting species');
+		// 	this.props.getPokemonSpecies(
+		// 		parseId(this.props.pokemons.current_pokemon.species.url)
+		// 	);
+		// }
 	}
 	render() {
 		const {

@@ -3,7 +3,18 @@
 	height: 96px;
 }
 
+@font-face {
+	font-family: 'Pokemon';
+	src: URL('./components/layout/Pokemon Solid.ttf') format('truetype');
+}
 
+body {
+	font-family: 'Pokemon', sans-serif;
+}
+
+.poke-font {
+	font-family: 'Pokemon', sans-serif;
+}
 
 .type-normal {
 	background-color: grey;

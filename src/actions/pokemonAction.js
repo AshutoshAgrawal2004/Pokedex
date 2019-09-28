@@ -69,7 +69,6 @@ export const setLoading = () => dispatch => {
 	});
 };
 export const clearCurrent = () => dispatch => {
-	console.log('cleaning current pokemon');
 	dispatch({
 		type: CLEAR_CURRENT
 	});

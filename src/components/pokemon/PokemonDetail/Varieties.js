@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { parseId } from '../../HelpFuncs';
 
 const Varieties = ({ varieties }) => {
-	varieties = varieties.filter(variety => variety.is_default == false);
+	varieties = varieties.filter(variety => variety.is_default === false);
 	return (
 		<div className='card-group d-flex align-items-center'>
 			{varieties.map(variety => {
@@ -23,7 +23,7 @@ const Varieties = ({ varieties }) => {
 							alt={variety.pokemon.name}
 							className='card-img-top pokeimg'
 						/>
-						<h5 className='card-title'>{variety.pokemon.name}</h5>
+						<h6 className='card-title'>{variety.pokemon.name}</h6>
 					</div>
 				);
 			})}

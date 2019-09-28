@@ -11,7 +11,5 @@ export const parseId = url => {
 	if (match != null) {
 		let result = match[1];
 		return result;
-	} else {
-		let result = '';
 	}
 };
