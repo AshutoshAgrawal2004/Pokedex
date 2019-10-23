@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { parseId } from '../../HelpFuncs';
-
+import { Link } from 'react-router-dom';
 const Varieties = ({ varieties }) => {
 	varieties = varieties.filter(variety => variety.is_default === false);
 	return (
@@ -23,7 +23,9 @@ const Varieties = ({ varieties }) => {
 							alt={variety.pokemon.name}
 							className='card-img-top pokeimg'
 						/>
-						<h6 className='card-title'>{variety.pokemon.name}</h6>
+						<Link className='card-title' to={`/pokemon/${pokid}`}>
+							{variety.pokemon.name}
+						</Link>
 					</div>
 				);
 			})}

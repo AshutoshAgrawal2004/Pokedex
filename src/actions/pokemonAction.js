@@ -9,6 +9,7 @@ import {
 	CLEAR_FILTER
 } from './types';
 import axios from 'axios';
+import { parseId } from '../components/HelpFuncs';
 export const getPokemons = () => async dispatch => {
 	try {
 		clearCurrent();
@@ -38,6 +39,8 @@ export const getPokemonDetail = id => async dispatch => {
 			type: GET_POKEMON_DETAIL,
 			payload: data
 		});
+		const pokeID = parseId(data.species.url);
+		dispatch(getPokemonSpecies(pokeID));
 	} catch (err) {
 		dispatch({
 			type: POKEMON_ERROR,
