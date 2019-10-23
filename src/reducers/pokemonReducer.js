@@ -1,5 +1,6 @@
 import {
-	GET_ALL_POKEMONS,
+	GET_FIRST_POKEMONS,
+	GET_MORE_POKEMONS,
 	GET_POKEMON_DETAIL,
 	GET_POKEMON_SPECIES,
 	POKEMON_ERROR,
@@ -10,7 +11,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-	pokemons: null,
+	pokemons: [],
 	filtered_pokemons: null,
 	current_pokemon: null,
 	current_pokemon_species: null,
@@ -20,10 +21,17 @@ const initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
-		case GET_ALL_POKEMONS:
+		case GET_FIRST_POKEMONS:
 			return {
 				...state,
-				pokemons: action.payload,
+				pokemons: action.payload.results,
+				loading: false,
+				current: null
+			};
+		case GET_MORE_POKEMONS:
+			return {
+				...state,
+				pokemons: state.pokemons.concat(action.payload.results),
 				loading: false,
 				current: null
 			};

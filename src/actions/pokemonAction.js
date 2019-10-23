@@ -1,5 +1,6 @@
 import {
-	GET_ALL_POKEMONS,
+	GET_FIRST_POKEMONS,
+	GET_MORE_POKEMONS,
 	GET_POKEMON_DETAIL,
 	SET_LOADING,
 	POKEMON_ERROR,
@@ -10,16 +11,39 @@ import {
 } from './types';
 import axios from 'axios';
 import { parseId } from '../components/HelpFuncs';
-export const getPokemons = () => async dispatch => {
+export const getFirstPokemons = () => async dispatch => {
 	try {
 		clearCurrent();
 		setLoading();
 		const res = await axios.get(
-			'https://pokeapi.co/api/v2/pokemon?limit=807'
+			`https://pokeapi.co/api/v2/pokemon?limit=100`
 		);
 		const data = await res.data;
 		dispatch({
-			type: GET_ALL_POKEMONS,
+			type: GET_FIRST_POKEMONS,
+			payload: data
+		});
+	} catch (err) {
+		dispatch({
+			type: POKEMON_ERROR,
+			payload: err
+		});
+	}
+};
+export const getMorePokemons = () => async (dispatch, state) => {
+	try {
+		clearCurrent();
+		setLoading();
+		/* This is the starting number from which pokemons to fetch for infinite scroll. This implies that the next request will start from last pokemon*/
+
+		const start = state().pokemons.pokemons.length;
+
+		const res = await axios.get(
+			`https://pokeapi.co/api/v2/pokemon?limit=100&offset=${start}`
+		);
+		const data = await res.data;
+		dispatch({
+			type: GET_MORE_POKEMONS,
 			payload: data
 		});
 	} catch (err) {

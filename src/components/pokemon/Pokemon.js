@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getPokemons } from '../../actions/pokemonAction';
+import { getFirstPokemons, getMorePokemons } from '../../actions/pokemonAction';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from '../layout/Spinner';
 import PokemonItem from './PokemonItem';
 import uuid from 'uuid';
 const Pokemon = ({
-	getPokemons,
+	getFirstPokemons,
+	getMorePokemons,
 	pokemons: { loading, pokemons, filtered_pokemons }
 }) => {
 	useEffect(() => {
-		getPokemons();
+		getFirstPokemons();
 		console.log(pokemons);
 	}, []);
 
@@ -24,11 +26,23 @@ const Pokemon = ({
 		);
 	} else if (pokemons !== null && pokemons.length !== 0) {
 		return (
-			<div className='card-group d-flex align-items-center'>
-				{pokemons.results.map(pokemon => (
-					<PokemonItem key={uuid.v4()} pokemon={pokemon} />
-				))}
-			</div>
+			<InfiniteScroll
+				dataLength={pokemons.length} //This is important field to render the next data
+				next={getMorePokemons}
+				hasMore={true}
+				loader={<h4>Loading...</h4>}
+				endMessage={
+					<p style={{ textAlign: 'center' }}>
+						<b>Yay! You have seen it all</b>
+					</p>
+				}
+			>
+				<div className='card-group d-flex align-items-center'>
+					{pokemons.map(pokemon => (
+						<PokemonItem key={uuid.v4()} pokemon={pokemon} />
+					))}
+				</div>
+			</InfiniteScroll>
 		);
 	} else {
 		return <Spinner />;
@@ -37,12 +51,13 @@ const Pokemon = ({
 
 Pokemon.propTypes = {
 	pokemons: PropTypes.object.isRequired,
-	getPokemons: PropTypes.func.isRequired
+	getFirstPokemons: PropTypes.func.isRequired,
+	getMorePokemons: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
 	pokemons: state.pokemons
 });
 export default connect(
 	mapStateToProps,
-	{ getPokemons }
+	{ getFirstPokemons, getMorePokemons }
 )(Pokemon);

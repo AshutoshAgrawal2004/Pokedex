@@ -1,6 +1,7 @@
 import React, { Component, Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import uuid from 'uuid';
 import {
 	getPokemonDetail,
@@ -52,7 +53,39 @@ const PokemonDetail = ({ clearCurrent, getPokemonDetail, pokemons, match }) => {
 	return (
 		<Fragment>
 			<div className='card align-items-center'>
+				<div className='card m-auto flex-fill align-items-center'>
+					<img
+						src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseId(
+							pokemons.pokemons[id - 2].url
+						)}.png`}
+						className='card-img-top pokeimg'
+						alt={pokemons.pokemons[id - 2].name}
+					/>
+					<Link
+						to={`/pokemon/${parseId(
+							pokemons.pokemons[id - 2].url
+						)}`}
+						className='card-title h4 text-warning text-capitalize'
+					>
+						{pokemons.pokemons[id - 2].name}
+					</Link>
+				</div>
 				<Varieties varieties={varieties} />
+				<div className='card m-auto flex-fill align-items-center'>
+					<img
+						src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseId(
+							pokemons.pokemons[id].url
+						)}.png`}
+						className='card-img-top pokeimg'
+						alt={pokemons.pokemons[id].name}
+					/>
+					<Link
+						to={`/pokemon/${parseId(pokemons.pokemons[id].url)}`}
+						className='card-title h4 text-warning text-capitalize'
+					>
+						{pokemons.pokemons[id].name}
+					</Link>
+				</div>
 				<img
 					src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
 					onError={e => {
