@@ -72,15 +72,15 @@ const PokemonDetail = ({ clearCurrent, getPokemonDetail, pokemons, match }) => {
 							? flavor_text_entries[1].flavor_text
 							: flavor_text_entries[2].flavor_text}
 					</p>
-					<h5 className='text-center'>Evolution</h5>
-					<EvolutionChain evolutionURL={evolution_chain.url} />
-					<Abilities key={uuid.v4()} abilities={abilities} />
-					<Bio key={uuid.v4()} bio={bio} />
-					<Types key={uuid.v4()} types={types} />
-					<Stats key={uuid.v4()} stats={stats} />
-					<Moves key={uuid.v4()} moves={moves} />
 				</div>
 			</div>
+			<h5 className='text-center'>Evolution</h5>
+			<EvolutionChain evolutionURL={evolution_chain.url} />
+			<Abilities key={uuid.v4()} abilities={abilities} />
+			<Bio key={uuid.v4()} bio={bio} />
+			<Types key={uuid.v4()} types={types} />
+			<Stats key={uuid.v4()} stats={stats} />
+			<Moves key={uuid.v4()} moves={moves} />
 		</Fragment>
 	);
 };
