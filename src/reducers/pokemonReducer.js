@@ -3,6 +3,8 @@ import {
 	GET_MORE_POKEMONS,
 	GET_POKEMON_DETAIL,
 	GET_POKEMON_SPECIES,
+	GET_REGIONAL_POKEMONS,
+	CLEAR_REGIONAL_POKEMONS,
 	POKEMON_ERROR,
 	SET_LOADING,
 	CLEAR_CURRENT,
@@ -13,6 +15,7 @@ import {
 const initialState = {
 	pokemons: [],
 	filtered_pokemons: null,
+	regional_pokemons: null,
 	current_pokemon: null,
 	current_pokemon_species: null,
 	loading: false,
@@ -25,15 +28,24 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				pokemons: action.payload.results,
-				loading: false,
-				current: null
+				loading: false
 			};
 		case GET_MORE_POKEMONS:
 			return {
 				...state,
 				pokemons: state.pokemons.concat(action.payload.results),
-				loading: false,
-				current: null
+				loading: false
+			};
+		case GET_REGIONAL_POKEMONS:
+			return {
+				...state,
+				regional_pokemons: action.payload,
+				loading: false
+			};
+		case CLEAR_REGIONAL_POKEMONS:
+			return {
+				...state,
+				regional_pokemons: null
 			};
 		case GET_POKEMON_DETAIL:
 			return {

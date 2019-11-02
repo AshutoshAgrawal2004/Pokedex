@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-const RegionalSelector = props => {
+import { connect } from 'react-redux';
+import {
+	getRegionalPokemons,
+	clearRegionalPokemons
+} from '../../actions/pokemonAction';
+const RegionalSelector = ({
+	pokemons,
+	getRegionalPokemons,
+	clearRegionalPokemons
+}) => {
+	const onChange = e => {
+		if (e.target.value === 'default') {
+			clearRegionalPokemons();
+		} else {
+			getRegionalPokemons(e.target.value);
+		}
+	};
 	return (
-		<select className='custom-select'>
-			<option selected>Select Region</option>
+		<select className='custom-select' onChange={onChange}>
+			<option value='default'>Select Region</option>
 			<option value='kanto'>Kanto</option>
 			<option value='johto'>Johto</option>
 			<option value='hoenn'>Hoenn</option>
@@ -16,6 +31,16 @@ const RegionalSelector = props => {
 	);
 };
 
-RegionalSelector.propTypes = {};
+RegionalSelector.propTypes = {
+	pokemons: PropTypes.object.isRequired,
+	getRegionalPokemons: PropTypes.func.isRequired,
+	clearRegionalPokemons: PropTypes.func.isRequired
+};
 
-export default RegionalSelector;
+const mapStateToProps = state => ({
+	pokemons: state.pokemons
+});
+export default connect(
+	mapStateToProps,
+	{ getRegionalPokemons, clearRegionalPokemons }
+)(RegionalSelector);

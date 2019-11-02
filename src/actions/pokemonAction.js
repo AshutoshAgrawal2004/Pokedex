@@ -4,6 +4,8 @@ import {
 	GET_POKEMON_DETAIL,
 	SET_LOADING,
 	POKEMON_ERROR,
+	GET_REGIONAL_POKEMONS,
+	CLEAR_REGIONAL_POKEMONS,
 	GET_POKEMON_SPECIES,
 	CLEAR_CURRENT,
 	FILTER_POKEMONS,
@@ -11,6 +13,36 @@ import {
 } from './types';
 import axios from 'axios';
 import { parseId } from '../components/HelpFuncs';
+const regionalPokedexNumbers = {
+	kanto: {
+		start: 1,
+		end: 151
+	},
+	johto: {
+		start: 152,
+		end: 251
+	},
+	hoenn: {
+		start: 252,
+		end: 386
+	},
+	sinnoh: {
+		start: 387,
+		end: 493
+	},
+	unova: {
+		start: 494,
+		end: 649
+	},
+	kalos: {
+		start: 650,
+		end: 721
+	},
+	alola: {
+		start: 722,
+		end: 807
+	}
+};
 export const getFirstPokemons = () => async dispatch => {
 	try {
 		clearCurrent();
@@ -52,6 +84,32 @@ export const getMorePokemons = () => async (dispatch, state) => {
 			payload: err
 		});
 	}
+};
+export const getRegionalPokemons = region => async dispatch => {
+	try {
+		setLoading();
+		const regionalGroup = regionalPokedexNumbers[region];
+		const res = await axios.get(
+			`https://pokeapi.co/api/v2/pokemon?limit=${regionalGroup.end -
+				regionalGroup.start +
+				1}&offset=${regionalGroup.start - 1}`
+		);
+		const data = await res.data;
+		dispatch({
+			type: GET_REGIONAL_POKEMONS,
+			payload: data
+		});
+	} catch (err) {
+		dispatch({
+			type: POKEMON_ERROR,
+			payload: err
+		});
+	}
+};
+export const clearRegionalPokemons = () => {
+	return {
+		type: CLEAR_REGIONAL_POKEMONS
+	};
 };
 export const getPokemonDetail = id => async dispatch => {
 	try {
