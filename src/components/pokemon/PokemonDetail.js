@@ -96,7 +96,7 @@ const PokemonDetail = ({ clearCurrent, getPokemonDetail, pokemons, match }) => {
 					role='button'
 					data-slide='prev'
 				>
-					<i class='fas fa-chevron-left'></i>
+					<i className='fas fa-chevron-left'></i>
 				</Link>
 				<Link
 					className='carousel-control-next text-danger'
@@ -104,7 +104,7 @@ const PokemonDetail = ({ clearCurrent, getPokemonDetail, pokemons, match }) => {
 					role='button'
 					data-slide='next'
 				>
-					<i class='fas fa-chevron-right'></i>
+					<i className='fas fa-chevron-right'></i>
 				</Link>
 			</div>
 			<EvolutionChain evolutionURL={evolution_chain.url} />

@@ -21,7 +21,7 @@ const RegionalSelector = ({
 		}
 	};
 	return (
-		<select className='custom-select' onChange={onChange}>
+		<select className='custom-select my-2' onChange={onChange}>
 			<option value='default'>Select Region</option>
 			<option value='kanto'>Kanto</option>
 			<option value='johto'>Johto</option>

@@ -19,16 +19,14 @@ const SearchPokemons = ({ filterPokemons, clearFilter, filtered_pokemons }) => {
 	};
 
 	return (
-		<form className='form-inline'>
-			<input
-				type='search'
-				ref={text}
-				aria-label='Filter Pokemons...'
-				placeholder='Filter Pokemons....'
-				className='form-control mr-sm-2'
-				onChange={onChange}
-			/>
-		</form>
+		<input
+			type='search'
+			ref={text}
+			aria-label='Filter Pokemons...'
+			placeholder='Filter Pokemons....'
+			className='form-control mr-sm-2 my-2'
+			onChange={onChange}
+		/>
 	);
 };
 SearchPokemons.propTypes = {
