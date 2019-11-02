@@ -3,17 +3,20 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
 	getRegionalPokemons,
-	clearRegionalPokemons
+	clearRegionalPokemons,
+	clearFilter
 } from '../../actions/pokemonAction';
 const RegionalSelector = ({
 	pokemons,
 	getRegionalPokemons,
-	clearRegionalPokemons
+	clearRegionalPokemons,
+	clearFilter
 }) => {
 	const onChange = e => {
 		if (e.target.value === 'default') {
 			clearRegionalPokemons();
 		} else {
+			clearFilter();
 			getRegionalPokemons(e.target.value);
 		}
 	};
@@ -42,5 +45,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
 	mapStateToProps,
-	{ getRegionalPokemons, clearRegionalPokemons }
+	{ getRegionalPokemons, clearRegionalPokemons, clearFilter }
 )(RegionalSelector);

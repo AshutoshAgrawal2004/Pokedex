@@ -9,16 +9,25 @@ import uuid from 'uuid';
 const Pokemon = ({
 	getFirstPokemons,
 	getMorePokemons,
-	pokemons: { loading, pokemons, filtered_pokemons }
+	pokemons: { loading, pokemons, filtered_pokemons, regional_pokemons }
 }) => {
 	useEffect(() => {
 		getFirstPokemons();
 	}, []);
-
-	if (filtered_pokemons !== null) {
+	if (loading) {
+		return <Spinner />;
+	} else if (filtered_pokemons !== null) {
 		return (
 			<div className='card-group d-flex align-items-center'>
 				{filtered_pokemons.map(pokemon => (
+					<PokemonItem key={uuid.v4()} pokemon={pokemon} />
+				))}
+			</div>
+		);
+	} else if (regional_pokemons !== null) {
+		return (
+			<div className='card-group d-flex align-items-center'>
+				{regional_pokemons.map(pokemon => (
 					<PokemonItem key={uuid.v4()} pokemon={pokemon} />
 				))}
 			</div>
@@ -44,7 +53,7 @@ const Pokemon = ({
 			</InfiniteScroll>
 		);
 	} else {
-		return <Spinner />;
+		return <h1>No Results Found</h1>;
 	}
 };
 

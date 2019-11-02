@@ -45,8 +45,7 @@ const regionalPokedexNumbers = {
 };
 export const getFirstPokemons = () => async dispatch => {
 	try {
-		clearCurrent();
-		setLoading();
+		dispatch(setLoading());
 		const res = await axios.get(
 			`https://pokeapi.co/api/v2/pokemon?limit=100`
 		);
@@ -64,8 +63,6 @@ export const getFirstPokemons = () => async dispatch => {
 };
 export const getMorePokemons = () => async (dispatch, state) => {
 	try {
-		clearCurrent();
-		setLoading();
 		/* This is the starting number from which pokemons to fetch for infinite scroll. This implies that the next request will start from last pokemon*/
 
 		const start = state().pokemons.pokemons.length;
@@ -87,7 +84,7 @@ export const getMorePokemons = () => async (dispatch, state) => {
 };
 export const getRegionalPokemons = region => async dispatch => {
 	try {
-		setLoading();
+		dispatch(setLoading());
 		const regionalGroup = regionalPokedexNumbers[region];
 		const res = await axios.get(
 			`https://pokeapi.co/api/v2/pokemon?limit=${regionalGroup.end -

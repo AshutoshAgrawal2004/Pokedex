@@ -18,7 +18,7 @@ const initialState = {
 	regional_pokemons: null,
 	current_pokemon: null,
 	current_pokemon_species: null,
-	loading: false,
+	loading: true,
 	error: null
 };
 
@@ -39,7 +39,7 @@ export default (state = initialState, action) => {
 		case GET_REGIONAL_POKEMONS:
 			return {
 				...state,
-				regional_pokemons: action.payload,
+				regional_pokemons: action.payload.results,
 				loading: false
 			};
 		case CLEAR_REGIONAL_POKEMONS:
@@ -79,10 +79,15 @@ export default (state = initialState, action) => {
 		case FILTER_POKEMONS:
 			return {
 				...state,
-				filtered_pokemons: state.pokemons.results.filter(pokemon => {
-					const regex = new RegExp(`${action.payload}`, 'gi');
-					return pokemon.name.match(regex);
-				})
+				filtered_pokemons: state.regional_pokemons
+					? state.regional_pokemons.filter(pokemon => {
+							const regex = new RegExp(`${action.payload}`, 'gi');
+							return pokemon.name.match(regex);
+					  })
+					: state.pokemons.filter(pokemon => {
+							const regex = new RegExp(`${action.payload}`, 'gi');
+							return pokemon.name.match(regex);
+					  })
 			};
 		case CLEAR_FILTER:
 			return {
