@@ -13,7 +13,6 @@ const Pokemon = ({
 }) => {
 	useEffect(() => {
 		getFirstPokemons();
-		console.log(pokemons);
 	}, []);
 
 	if (filtered_pokemons !== null) {
