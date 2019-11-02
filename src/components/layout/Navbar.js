@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchPokemons from './SearchPokemons';
+import RegionalSelector from './RegionalSelector';
 const Navbar = () => {
 	return (
 		<nav className='navbar navbar-dark bg-danger mb-5'>
@@ -12,6 +13,7 @@ const Navbar = () => {
 				Pokedex
 			</Link>
 			<SearchPokemons />
+			<RegionalSelector />
 		</nav>
 	);
 };
