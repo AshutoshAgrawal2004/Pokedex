@@ -12,7 +12,7 @@ function App() {
 			<Router>
 				<Fragment>
 					<Navbar />
-					<div className='container-fluid'>
+					<div className='container'>
 						<Switch>
 							<Route exact path='/' component={Pokemon} />
 							<Route

@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Yatra+One|Yeon+Sung&display=swap');
+
+/* font-family: 'Yeon Sung', cursive;
+font-family: 'Yatra One', cursive; */
 .pokeimg {
 	width: 96px;
 	height: 96px;
@@ -12,6 +16,7 @@ body {
 	/* font-family: 'Pokemon', sans-serif; */
 	background-color: #CC0000;
 	color: #fff;
+	font-family: 'Yeon Sung', cursive;
 }
 
 nav {
@@ -26,16 +31,34 @@ a:hover {
 	color: #B3A125;
 }
 
+a,
+.card-title,
+h5,
+th {
+	font-family: 'Yatra One', cursive;
+
+}
+
+a,
+h5 {
+	font-size: 1.75rem;
+}
+
 .card,
 .card-group {
 	background-color: #3B4CCA;
 	color: #fff;
 }
 
+.poke-desc {
+	font-size: 1.5rem;
+}
+
 td,
 th {
 	color: #fff;
 }
+
 
 .navbar-brand {
 	letter-spacing: 0.2rem;

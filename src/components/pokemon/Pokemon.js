@@ -18,7 +18,7 @@ const Pokemon = ({
 		return <Spinner />;
 	} else if (filtered_pokemons !== null) {
 		return (
-			<div className='card-group d-flex align-items-center'>
+			<div className='card-group d-flex align-items-center py-4'>
 				{filtered_pokemons.map(pokemon => (
 					<PokemonItem key={uuid.v4()} pokemon={pokemon} />
 				))}
@@ -26,7 +26,7 @@ const Pokemon = ({
 		);
 	} else if (regional_pokemons !== null) {
 		return (
-			<div className='card-group d-flex align-items-center'>
+			<div className='card-group d-flex align-items-center py-4'>
 				{regional_pokemons.map(pokemon => (
 					<PokemonItem key={uuid.v4()} pokemon={pokemon} />
 				))}
@@ -38,14 +38,14 @@ const Pokemon = ({
 				dataLength={pokemons.length} //This is important field to render the next data
 				next={getMorePokemons}
 				hasMore={true}
-				loader={<h4>Loading...</h4>}
+				loader={<h4 className='text-center'>Loading....</h4>}
 				endMessage={
 					<p style={{ textAlign: 'center' }}>
 						<b>Yay! You have seen it all</b>
 					</p>
 				}
 			>
-				<div className='card-group d-flex align-items-center'>
+				<div className='card-group d-flex align-items-center py-4'>
 					{pokemons.map(pokemon => (
 						<PokemonItem key={uuid.v4()} pokemon={pokemon} />
 					))}

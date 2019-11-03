@@ -82,7 +82,7 @@ const PokemonDetail = ({ clearCurrent, getPokemonDetail, pokemons, match }) => {
 						<h1 className='card-title text-center text-capitalize'>
 							{name}
 						</h1>
-						<p className='card-text'>
+						<p className='card-text poke-desc'>
 							{flavor_text_entries[1].language.name === 'en'
 								? flavor_text_entries[1].flavor_text
 								: flavor_text_entries[2].flavor_text}
