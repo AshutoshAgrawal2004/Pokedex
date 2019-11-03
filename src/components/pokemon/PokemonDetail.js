@@ -89,9 +89,9 @@ const PokemonDetail = ({ clearCurrent, getPokemonDetail, pokemons, match }) => {
 						</p>
 					</div>
 				</div>
-				<h5 className='text-center'>Evolution</h5>
 				<Link
-					className='carousel-control-prev text-danger'
+					className='carousel-control-prev'
+					style={{ color: '#FFDE00', fontSize: '2rem' }}
 					to={`/pokemon/${PokeId - 1}`}
 					role='button'
 					data-slide='prev'
@@ -99,7 +99,8 @@ const PokemonDetail = ({ clearCurrent, getPokemonDetail, pokemons, match }) => {
 					<i className='fas fa-chevron-left'></i>
 				</Link>
 				<Link
-					className='carousel-control-next text-danger'
+					className='carousel-control-next'
+					style={{ color: '#FFDE00', fontSize: '2rem' }}
 					to={`/pokemon/${PokeId + 1}`}
 					role='button'
 					data-slide='next'

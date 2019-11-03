@@ -11,7 +11,8 @@ const Varieties = ({ varieties }) => {
 				return (
 					<div
 						key={pokid}
-						className='card m-auto flex-fill align-items-center'
+						className='card rounded-circle align-items-center my-4 mx-auto'
+						style={cardStyle}
 					>
 						<img
 							src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokid}.png`}
@@ -21,9 +22,12 @@ const Varieties = ({ varieties }) => {
 									'https://ih1.redbubble.net/image.731955024.9007/flat,750x,075,f-pad,750x1000,f8f8f8.u1.jpg';
 							}}
 							alt={variety.pokemon.name}
-							className='card-img-top pokeimg'
+							className='card-img-top pokeimg '
 						/>
-						<Link className='card-title' to={`/pokemon/${pokid}`}>
+						<Link
+							className='card-title h5 text-capitalize text-center'
+							to={`/pokemon/${pokid}`}
+						>
 							{variety.pokemon.name}
 						</Link>
 					</div>
@@ -32,7 +36,12 @@ const Varieties = ({ varieties }) => {
 		</div>
 	);
 };
-
+const cardStyle = {
+	width: '160px',
+	height: '160px',
+	maxWidth: '160px',
+	maxHeight: '160px'
+};
 Varieties.propTypes = {
 	varieties: PropTypes.array.isRequired
 };

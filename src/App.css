@@ -10,6 +10,35 @@
 
 body {
 	/* font-family: 'Pokemon', sans-serif; */
+	background-color: #CC0000;
+	color: #fff;
+}
+
+nav {
+	background-color: #f00;
+}
+
+a {
+	color: #FFDE00;
+}
+
+a:hover {
+	color: #B3A125;
+}
+
+.card,
+.card-group {
+	background-color: #3B4CCA;
+	color: #fff;
+}
+
+td,
+th {
+	color: #fff;
+}
+
+.navbar-brand {
+	letter-spacing: 0.2rem;
 }
 
 .poke-font {

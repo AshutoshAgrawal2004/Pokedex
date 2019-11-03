@@ -96,6 +96,24 @@ const Bio = ({ bio }) => {
 												(capture_rate / 255) * 100
 											)}%`}
 										</div>
+										<div
+											className={`progress-bar progress-bar-animated progress-bar-striped bg-danger`}
+											role='progressbar'
+											style={{
+												width: `${((255 -
+													capture_rate) /
+													255) *
+													100}%`
+											}}
+											aria-valuenow={255 - capture_rate}
+											aria-valuemin='0'
+											aria-valuemax='255'
+										>
+											{`${Math.floor(
+												((255 - capture_rate) / 255) *
+													100
+											)}%`}
+										</div>
 									</div>
 								</td>
 							</tr>

@@ -17,7 +17,7 @@ const PokemonItem = ({ pokemon }) => {
 			/>
 			<Link
 				to={`/pokemon/${parseId(pokemon.url)}`}
-				className='card-title h4 text-warning text-capitalize'
+				className='card-title h4 text-capitalize'
 			>
 				{pokemon.name}
 			</Link>
@@ -27,7 +27,9 @@ const PokemonItem = ({ pokemon }) => {
 
 const cardStyle = {
 	width: '160px',
-	height: '160px'
+	height: '160px',
+	backgroundColor: '#3B4CCA',
+	margin: '5px'
 };
 PokemonItem.propTypes = {
 	pokemon: PropTypes.object.isRequired

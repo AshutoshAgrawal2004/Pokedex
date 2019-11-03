@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -33,36 +33,50 @@ const EvolutionChain = ({ evolutionURL }) => {
 		}
 
 		return (
-			<div className='card-group '>
-				{Generation.map(gen => {
-					const { name, url } = gen.species;
-					return (
-						<div
-							className='card rounded-circle m-auto align-items-center'
-							style={cardStyle}
-							key={uuid.v4()}
-						>
-							<img
-								src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseId(
-									url
-								)}.png`}
-								className='card-img-top pokeimg'
-								alt={name}
-							/>
-							<Link
-								to={`/pokemon/${parseId(url)}`}
-								className='card-title h4 text-capitalize'
+			<Fragment>
+				<h5
+					className='text-center p-3'
+					style={{
+						backgroundColor: '#3B4CCA',
+						color: '#fff',
+						margin: '0'
+					}}
+				>
+					Evolution
+				</h5>
+				<div className='card-group p-4'>
+					{Generation.map(gen => {
+						const { name, url } = gen.species;
+						return (
+							<div
+								className='card rounded-circle align-items-center  my-4 mx-auto'
+								style={cardStyle}
+								key={uuid.v4()}
 							>
-								{name}
-							</Link>
-						</div>
-					);
-				})}
-			</div>
+								<img
+									src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseId(
+										url
+									)}.png`}
+									className='card-img-top pokeimg '
+									alt={name}
+								/>
+								<Link
+									to={`/pokemon/${parseId(url)}`}
+									className='card-title h4 text-capitalize'
+								>
+									{name}
+								</Link>
+							</div>
+						);
+					})}
+				</div>
+			</Fragment>
 		);
 	}
 };
 const cardStyle = {
+	width: '160px',
+	height: '160px',
 	maxWidth: '160px',
 	maxHeight: '160px'
 };
