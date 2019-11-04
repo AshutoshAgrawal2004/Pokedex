@@ -41,6 +41,10 @@ const regionalPokedexNumbers = {
 	alola: {
 		start: 722,
 		end: 807
+	},
+	mega: {
+		start: 808,
+		end: 964
 	}
 };
 export const getFirstPokemons = () => async dispatch => {

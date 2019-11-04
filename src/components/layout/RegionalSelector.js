@@ -30,6 +30,7 @@ const RegionalSelector = ({
 			<option value='unova'>Unova</option>
 			<option value='kalos'>Kalos</option>
 			<option value='alola'>Alola</option>
+			<option value="mega">Mega and Specials</option>
 		</select>
 	);
 };

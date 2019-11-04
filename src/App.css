@@ -3,8 +3,8 @@
 /* font-family: 'Yeon Sung', cursive;
 font-family: 'Yatra One', cursive; */
 .pokeimg {
-	width: 96px;
-	height: 96px;
+	max-width: 96px;
+	max-height: 96px;
 }
 
 @font-face {
@@ -20,7 +20,7 @@ body {
 }
 
 nav {
-	background-color: #f00;
+	background-color: #fd0202;
 }
 
 a {
