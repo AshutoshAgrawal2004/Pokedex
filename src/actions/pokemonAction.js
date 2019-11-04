@@ -43,8 +43,46 @@ const regionalPokedexNumbers = {
 		end: 807
 	},
 	mega: {
-		start: 808,
+		start: 793,
 		end: 964
+	}
+};
+const legendAndMyths = {
+	kanto: {
+		start: 144,
+		end: 146
+	},
+	kanto2: {
+		start: 150,
+		end: 151
+	},
+	johto: {
+		start: 243,
+		end: 245
+	},
+	johto2: {
+		start: 249,
+		end: 251
+	},
+	hoenn: {
+		start: 377,
+		end: 386
+	},
+	sinnoh: {
+		start: 480,
+		end: 493
+	},
+	unova: {
+		start: 638,
+		end: 649
+	},
+	kalos: {
+		start: 716,
+		end: 721
+	},
+	alola: {
+		start: 785,
+		end: 808
 	}
 };
 export const getFirstPokemons = () => async dispatch => {
@@ -95,10 +133,35 @@ export const getRegionalPokemons = region => async dispatch => {
 				regionalGroup.start +
 				1}&offset=${regionalGroup.start - 1}`
 		);
-		const data = await res.data;
+		const data = await res.data.results;
 		dispatch({
 			type: GET_REGIONAL_POKEMONS,
 			payload: data
+		});
+	} catch (err) {
+		dispatch({
+			type: POKEMON_ERROR,
+			payload: err
+		});
+	}
+};
+export const getLegendryPokemons = () => async dispatch => {
+	try {
+		dispatch(setLoading());
+		let allLegends = [];
+		for (const legendGroup of Object.values(legendAndMyths)) {
+			const res = await axios.get(
+				`https://pokeapi.co/api/v2/pokemon?limit=${legendGroup.end -
+					legendGroup.start +
+					1}&offset=${legendGroup.start - 1}`
+			);
+			const data = await res.data.results;
+			allLegends = allLegends.concat(data);
+		}
+
+		dispatch({
+			type: GET_REGIONAL_POKEMONS,
+			payload: allLegends
 		});
 	} catch (err) {
 		dispatch({

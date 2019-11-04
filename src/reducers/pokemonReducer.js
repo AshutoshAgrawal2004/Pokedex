@@ -39,7 +39,7 @@ export default (state = initialState, action) => {
 		case GET_REGIONAL_POKEMONS:
 			return {
 				...state,
-				regional_pokemons: action.payload.results,
+				regional_pokemons: action.payload,
 				loading: false
 			};
 		case CLEAR_REGIONAL_POKEMONS:
